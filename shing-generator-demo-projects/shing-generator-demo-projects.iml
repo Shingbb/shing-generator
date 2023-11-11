@@ -3,12 +3,12 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/acm-template/src/com/shing" isTestSource="false" packagePrefix="com.yupi" />
+      <sourceFolder url="file://$MODULE_DIR$/acm-template/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="SonarLintModuleSettings">
-    <option name="uniqueId" value="041cf82e-64cf-4760-bb53-0a64c25517f8" />
+    <option name="uniqueId" value="bbb2b246-d0a3-4682-a79d-530cda1061b0" />
   </component>
 </module>
