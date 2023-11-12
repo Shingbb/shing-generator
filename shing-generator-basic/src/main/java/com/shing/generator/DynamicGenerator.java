@@ -12,6 +12,7 @@ import java.io.Writer;
 
 /**
  * @author LBC
+ * 动态文件生成
  */
 public class DynamicGenerator {
     public static void main(String[] args) throws IOException, TemplateException {
