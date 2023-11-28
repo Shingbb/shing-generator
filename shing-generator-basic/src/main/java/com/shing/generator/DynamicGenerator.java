@@ -5,10 +5,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 
 /**
  * @author LBC
@@ -104,7 +101,8 @@ public class DynamicGenerator {
         mainTemplateConfig.setOutputText("求和结果：");
 
         // 生成
-        Writer out = new FileWriter(outputPath);
+//        Writer out = new FileWriter(outputPath);
+        Writer out = new OutputStreamWriter(new FileOutputStream(outputPath),"UTF-8");
         template.process(model, out);
 
         // 生成文件后别忘了关闭哦
