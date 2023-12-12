@@ -1,5 +1,6 @@
 package com.shing.generator;
 
+import cn.hutool.core.io.FileUtil;
 import com.shing.model.MainTemplateConfig;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -99,6 +100,11 @@ public class DynamicGenerator {
         mainTemplateConfig.setAuthor("shing");
         mainTemplateConfig.setLoop(false);
         mainTemplateConfig.setOutputText("求和结果：");
+
+        // 文件不存在则创建文件和父目录
+        if (!FileUtil.exist(outputPath)) {
+            FileUtil.touch(outputPath);
+        }
 
         // 生成
 //        Writer out = new FileWriter(outputPath);
