@@ -40,7 +40,32 @@ public class MainGenerator {
         System.out.println(dynamicInputPath);
         System.out.println(dynamicOutputPath);*/
 
-        // 在shing-generator/shing-generator-basic下运行
+        // 写死的文件 --> 读取的配置文件
+        String inputRootPath="F:\\Project\\shing-generator\\shing-generator-demo-projects\\acm-template-pro";
+        String outputRootPath="F:\\Project\\shing-generator\\shing-generator-maker";
+
+        String inputPath;
+        String outputPath;
+
+        inputPath = new File(inputRootPath, "/src/com/shing/acm/MainTemplate.java.ftl").getAbsolutePath();
+        outputPath =new  File(outputRootPath,"/src/com/shing/acm/MainTemplate.java").getAbsolutePath();
+        DynamicGenerator.doGenerate(inputPath,outputPath,model);
+
+
+
+        inputPath = new File(inputRootPath, ".gitignore").getAbsolutePath();
+        outputPath =new  File(outputRootPath,".gitignore").getAbsolutePath();
+        // 生成静态文件
+        StaticGenerator.copyFilesByHutool(inputPath,outputPath);
+
+
+        inputPath = new File(inputRootPath, "README.md").getAbsolutePath();
+        outputPath =new  File(outputRootPath,"README.md").getAbsolutePath();
+        // 生成静态文件
+        StaticGenerator.copyFilesByHutool(inputPath,outputPath);
+
+
+       /* // 在shing-generator/shing-generator-basic下运行
         String projectPath = System.getProperty("user.dir");
         // 整个项目的根路径
         File parentFile = new File(projectPath).getParentFile();
@@ -55,7 +80,7 @@ public class MainGenerator {
         DynamicGenerator.doGenerate(inputDynamicFilePath, outputDynamicFilePath, model);
 //        System.out.println(projectPath);
 //        System.out.println(inputDynamicFilePath);
-//        System.out.println(outputDynamicFilePath);
+//        System.out.println(outputDynamicFilePath);*/
 
     }
 
