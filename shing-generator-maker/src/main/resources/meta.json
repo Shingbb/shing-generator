@@ -6,8 +6,9 @@
   "author": "shing",
   "createTime": "2023-12-8",
   "fileConfig": {
-    "inputRootPath": "/shing-generator/shing-generator-demo-projects/acm-template-pro",
+    "sourceRootPath": "F:/Project/shing-generator/shing-generator-demo-projects/acm-template-pro",
     "outputRootPath": "generated",
+    "inputRootPath": ".source/acm-template-pro",
     "type": "dir",
     "files": [
       {

@@ -1,4 +1,4 @@
-package com.shing.maker.generator.file;
+package com.shing.maker.generator;
 
 import cn.hutool.core.io.FileUtil;
 

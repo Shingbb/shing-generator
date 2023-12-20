@@ -1,10 +1,11 @@
-package com.shing.maker.generator;
+package com.shing.maker.generator.main;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.resource.ClassPathResource;
 import cn.hutool.core.util.StrUtil;
+import com.shing.maker.generator.JarGenerator;
+import com.shing.maker.generator.ScriptGenerator;
 import com.shing.maker.generator.file.DynamicFileGenerator;
-import com.shing.maker.generator.file.ScriptGenerator;
 import com.shing.maker.meta.Meta;
 import com.shing.maker.meta.MetaManager;
 import freemarker.template.TemplateException;
@@ -22,10 +23,17 @@ public class MainGenerator {
 
         // 输出的根路径
         String projectPath = System.getProperty("user.dir");
-        String outputPath = projectPath + File.separator + "generated";
+        String outputPath = projectPath + File.separator + "generated"+File.separator + meta.getName();
         if (!FileUtil.exist(outputPath)) {
             FileUtil.mkdir(outputPath);
         }
+
+        // 复制从原始模板文件路径复制到生成的代码包中
+        String sourceRootPath = meta.getFileConfig().getSourceRootPath();
+        // copy目标路径--destination
+        String sourceCopyDestPath = outputPath + File.separator + ".source";
+        FileUtil.copy(sourceRootPath, sourceCopyDestPath, false);
+
 
         // 读取 resources 目录
         ClassPathResource classPathResource = new ClassPathResource("");
@@ -90,7 +98,12 @@ public class MainGenerator {
         // pom.xml
         inputFilePath = inputResourcePath + File.separator + "templates/pom.xml.ftl";
         outputFilePath = outputPath + File.separator + "pom.xml";
-        DynamicFileGenerator.doGenerate(inputFilePath , outputFilePath, meta);
+        DynamicFileGenerator.doGenerate(inputFilePath, outputFilePath, meta);
+
+        // 生成 README.md 项目介绍文件
+        inputFilePath = inputResourcePath + File.separator + "templates/README.md.ftl";
+        outputFilePath = outputPath + File.separator + "README.md";
+        DynamicFileGenerator.doGenerate(inputFilePath, outputFilePath, meta);
 
         // 构建 jar 包
         JarGenerator.doGenerate(outputPath);
