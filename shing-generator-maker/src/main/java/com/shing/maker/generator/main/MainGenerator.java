@@ -23,7 +23,7 @@ public class MainGenerator {
 
         // 输出的根路径
         String projectPath = System.getProperty("user.dir");
-        String outputPath = projectPath + File.separator + "generated"+File.separator + meta.getName();
+        String outputPath = projectPath + File.separator + "generated" + File.separator + meta.getName();
         if (!FileUtil.exist(outputPath)) {
             FileUtil.mkdir(outputPath);
         }
@@ -113,5 +113,24 @@ public class MainGenerator {
         String jarName = String.format("%s-%s-jar-with-dependencies.jar", meta.getName(), meta.getVersion());
         String jarPath = "target/" + jarName;
         ScriptGenerator.doGenerate(shellOutputFilePath, jarPath);
+
+        // 生成精简版的程序 （产物包）
+        String distOutputPath = outputPath + "-dist";
+        // - 拷贝 jar 包
+        String targetAbsolutePath = distOutputPath + File.separator + "target";
+        //Create a directory in the target path
+        FileUtil.mkdir(targetAbsolutePath);
+        //Get the absolute path of the jar file
+        String jarAbsolutePath = outputPath + File.separator + jarPath;
+        //Copy the jar file to the target path
+        //原始文件路径 --> 目标文件路径
+        FileUtil.copy(jarAbsolutePath, targetAbsolutePath, true);
+        // - 拷贝脚本文件
+        FileUtil.copy(shellOutputFilePath, distOutputPath, true);
+        FileUtil.copy(shellOutputFilePath + ".bat", distOutputPath, true);
+        // - 拷贝模板文件
+        FileUtil.copy(sourceCopyDestPath, distOutputPath, true);
+
+
     }
 }
