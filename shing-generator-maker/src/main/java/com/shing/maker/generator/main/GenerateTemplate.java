@@ -49,7 +49,7 @@ public class GenerateTemplate {
     /**
      * 生成精简版程序
      */
-    protected  void buildDish(String outputPath, String sourceCopyDestPath, String jarPath, String shellOutputFilePath) {
+    protected  void buildDish(String outputPath, String sourceCopyDestPath, String jarPath, String shellOutputFilePath) throws TemplateException, IOException, InterruptedException {
         String distOutputPath = outputPath + "-dist";
         // - 拷贝 jar 包
         String targetAbsolutePath = distOutputPath + File.separator + "target";
