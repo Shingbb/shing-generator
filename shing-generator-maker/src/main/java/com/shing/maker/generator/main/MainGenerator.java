@@ -13,8 +13,11 @@ public class MainGenerator  extends  GenerateTemplate {
     protected void buildDish(String outputPath, String sourceCopyDestPath, String jarPath, String shellOutputFilePath) throws TemplateException, IOException, InterruptedException {
         System.out.println("不要给我输出 dist 啦！");
 
-       /* super.buildDish(outputPath, sourceCopyDestPath, jarPath, shellOutputFilePath);*/
-       /* MainGenerator mainGenerator = new MainGenerator();
-        mainGenerator.doGenerate();*/
+    }
+
+    public static void main(String[] args) throws TemplateException, IOException, InterruptedException {
+        /* super.buildDish(outputPath, sourceCopyDestPath, jarPath, shellOutputFilePath);*/
+        MainGenerator mainGenerator = new MainGenerator();
+        mainGenerator.doGenerate();
     }
 }

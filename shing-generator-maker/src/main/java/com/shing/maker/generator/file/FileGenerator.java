@@ -61,9 +61,9 @@ public class FileGenerator {
 
     public static void main(String[] args) throws TemplateException, IOException {
         DataModel dataModel = new DataModel();
-        dataModel.setAuthor("shing");
+        dataModel.mainTemplate.setAuthor("shing");
         dataModel.setLoop(false);
-        dataModel.setOutputText("输出求和结果：");
+        dataModel.mainTemplate.setOutputText("输出求和结果：");
         doGenerate(dataModel);
     }
 
