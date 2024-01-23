@@ -1,10 +1,13 @@
+/*
 package com.shing.maker;
 
 import com.shing.maker.cli.CommandExecutor;
 
+*/
 /**
  * @author LBC
- */
+ *//*
+
 public class RunCommand {
     public static void main(String[] args) {
 //        args = new String[]{"generate", "-l", "-a", "-o"};
@@ -13,4 +16,4 @@ public class RunCommand {
         CommandExecutor commandExecutor = new CommandExecutor();
         commandExecutor.doExecute(args);
     }
-}
+}*/

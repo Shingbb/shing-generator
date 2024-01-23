@@ -1,3 +1,4 @@
+/*
 package com.shing.maker.cli.command;
 
 import cn.hutool.core.util.ReflectUtil;
@@ -28,4 +29,4 @@ public class ConfigCommand implements Runnable {
             System.out.println("---");
         }
     }
-}
+}*/

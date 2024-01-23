@@ -1,3 +1,4 @@
+/*
 package com.shing.maker.cli.command;
 
 import cn.hutool.core.bean.BeanUtil;
@@ -9,9 +10,11 @@ import picocli.CommandLine.Option;
 
 import java.util.concurrent.Callable;
 
+*/
 /**
  * @author LBC
- */
+ *//*
+
 @Command(name = "generate", description = "生成代码", mixinStandardHelpOptions = true)
 @Data
 public class GenerateCommand implements Callable<Integer> {
@@ -35,3 +38,4 @@ public class GenerateCommand implements Callable<Integer> {
         return 0;
     }
 }
+*/

@@ -1,6 +1,5 @@
 package com.shing.maker.generator.file;
 
-import com.shing.maker.model.DataModel;
 import freemarker.template.TemplateException;
 
 import java.io.File;
@@ -59,12 +58,18 @@ public class FileGenerator {
 
     }
 
-    public static void main(String[] args) throws TemplateException, IOException {
+    /**
+     *  测试方法
+     * @param args
+     * @throws TemplateException
+     * @throws IOException
+     */
+    /*public static void main(String[] args) throws TemplateException, IOException {
         DataModel dataModel = new DataModel();
         dataModel.mainTemplate.setAuthor("shing");
         dataModel.setLoop(false);
         dataModel.mainTemplate.setOutputText("输出求和结果：");
         doGenerate(dataModel);
-    }
+    }*/
 
 }

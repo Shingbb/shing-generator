@@ -1,3 +1,4 @@
+/*
 package com.shing.maker.cli;
 
 import com.shing.maker.cli.command.ConfigCommand;
@@ -5,9 +6,11 @@ import com.shing.maker.cli.command.GenerateCommand;
 import com.shing.maker.cli.command.ListCommand;
 
 import picocli.CommandLine;
+*/
 /**
  * @author LBC
- */
+ *//*
+
 @CommandLine.Command(name = "shing", mixinStandardHelpOptions = true)
 public class CommandExecutor implements Runnable {
 
@@ -26,13 +29,15 @@ public class CommandExecutor implements Runnable {
         System.out.println("请输入具体命令，或者输入 --help 查看命令提示");
     }
 
-    /**
+    */
+/**
      * 执行命令
      *
      * @param args
      * @return
-     */
+     *//*
+
     public Integer doExecute(String[] args) {
         return commandLine.execute(args);
     }
-}
+}*/
