@@ -2,7 +2,7 @@ package com.shing.maker.meta;
 
 /**
  * 元信息异常
- * @author LBC
+ * @author shing
  */
 public class MetaException extends  RuntimeException {
 

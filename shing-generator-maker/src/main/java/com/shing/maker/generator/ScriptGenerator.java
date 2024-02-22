@@ -12,7 +12,7 @@ import java.nio.file.attribute.PosixFilePermissions;
 import java.util.Set;
 
 /**
- * @author LBC
+ * @author shing
  */
 public class ScriptGenerator {
 

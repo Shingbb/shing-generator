@@ -8,7 +8,7 @@ import com.shing.maker.cli.command.ListCommand;
 import picocli.CommandLine;
 */
 /**
- * @author LBC
+ * @author shing
  *//*
 
 @CommandLine.Command(name = "shing", mixinStandardHelpOptions = true)

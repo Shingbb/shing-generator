@@ -6,7 +6,7 @@ import lombok.Getter;
 /**
  * 文件过滤范围枚举
  *
- * @author LBC
+ * @author shing
  */
 @Getter
 public enum FileFilterRangeEnum {

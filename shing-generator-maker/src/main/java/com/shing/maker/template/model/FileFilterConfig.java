@@ -7,7 +7,7 @@ import lombok.Data;
 /**
  * 文件过滤配置
  *
- * @author LBC
+ * @author shing
  */
 @Data
 @Builder

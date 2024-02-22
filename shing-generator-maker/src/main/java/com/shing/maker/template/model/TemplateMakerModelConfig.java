@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * @author LBC
+ * @author shing
  */
 @Data
 public class TemplateMakerModelConfig {
@@ -42,5 +42,9 @@ public class TemplateMakerModelConfig {
         private String groupKey;
 
         private String groupName;
+
+        private String type;
+
+        private String description;
     }
 }

@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * 静态模板配置
  *
- * @author LBC
+ * @author shing
  */
 @Data
 public class DataModel {

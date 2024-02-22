@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * @author LBC
+ * @author shing
  */
 @Data
 public class TemplateMakerFileConfig {
@@ -20,6 +20,8 @@ public class TemplateMakerFileConfig {
     public static class FileInfoConfig {
 
         private String path;
+
+        private String condition;
 
         private List<FileFilterConfig> filterConfigList;
     }

@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * @author LBC
+ * @author shing
  */
 public class GenerateTemplate {
 

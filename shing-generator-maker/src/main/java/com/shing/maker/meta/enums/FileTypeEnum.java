@@ -3,7 +3,7 @@ package com.shing.maker.meta.enums;
 /**
  * 元信息相关的枚举类
  *
- * @author LBC
+ * @author shing
  */
 
 public enum FileTypeEnum {

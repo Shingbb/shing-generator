@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * @author LBC
+ * @author shing
  */
 @NoArgsConstructor
 @Data

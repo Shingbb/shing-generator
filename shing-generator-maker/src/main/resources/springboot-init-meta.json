@@ -1,0 +1,912 @@
+{
+    "name": "springboot-init-generator",
+    "description": "Spring Boot 模板项目生成器",
+    "fileConfig": {
+        "sourceRootPath": "F:/Project/shing-generator/shing-generator-maker/.temp/2/springboot-init",
+        "files": [
+            {
+                "type": "group",
+                "condition": "needPost",
+                "groupKey": "post",
+                "groupName": "帖子文件组",
+                "files": [
+                    {
+                        "inputPath": "src/main/java/com/shing/springbootinit/controller/PostController.java",
+                        "outputPath": "src/main/java/com/shing/springbootinit/controller/PostController.java.ftl",
+                        "type": "file",
+                        "generateType": "dynamic"
+                    },
+                    {
+                        "inputPath": "src/main/java/com/shing/springbootinit/model/dto/post/PostAddRequest.java",
+                        "outputPath": "src/main/java/com/shing/springbootinit/model/dto/post/PostAddRequest.java.ftl",
+                        "type": "file",
+                        "generateType": "dynamic"
+                    },
+                    {
+                        "inputPath": "src/main/resources/mapper/PostMapper.xml",
+                        "outputPath": "src/main/resources/mapper/PostMapper.xml.ftl",
+                        "type": "file",
+                        "generateType": "dynamic"
+                    },
+                    {
+                        "inputPath": "src/main/java/com/shing/springbootinit/service/PostService.java",
+                        "outputPath": "src/main/java/com/shing/springbootinit/service/PostService.java.ftl",
+                        "type": "file",
+                        "generateType": "dynamic"
+                    },
+                    {
+                        "inputPath": "src/main/java/com/shing/springbootinit/model/entity/Post.java",
+                        "outputPath": "src/main/java/com/shing/springbootinit/model/entity/Post.java.ftl",
+                        "type": "file",
+                        "generateType": "dynamic"
+                    },
+                    {
+                        "inputPath": "src/main/java/com/shing/springbootinit/service/impl/PostServiceImpl.java",
+                        "outputPath": "src/main/java/com/shing/springbootinit/service/impl/PostServiceImpl.java.ftl",
+                        "type": "file",
+                        "generateType": "dynamic"
+                    },
+                    {
+                        "inputPath": "src/main/java/com/shing/springbootinit/model/dto/post/PostUpdateRequest.java",
+                        "outputPath": "src/main/java/com/shing/springbootinit/model/dto/post/PostUpdateRequest.java.ftl",
+                        "type": "file",
+                        "generateType": "dynamic"
+                    },
+                    {
+                        "inputPath": "src/main/java/com/shing/springbootinit/mapper/PostMapper.java",
+                        "outputPath": "src/main/java/com/shing/springbootinit/mapper/PostMapper.java.ftl",
+                        "type": "file",
+                        "generateType": "dynamic"
+                    },
+                    {
+                        "inputPath": "src/main/java/com/shing/springbootinit/model/dto/post/PostQueryRequest.java",
+                        "outputPath": "src/main/java/com/shing/springbootinit/model/dto/post/PostQueryRequest.java.ftl",
+                        "type": "file",
+                        "generateType": "dynamic"
+                    }
+                ]
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/model/dto/post/PostEsDTO.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/model/dto/post/PostEsDTO.java.ftl",
+                "type": "file",
+                "generateType": "dynamic",
+                "condition": "needPost && needEs"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/model/enums/UserRoleEnum.class",
+                "outputPath": "target/classes/com/shing/springbootinit/model/enums/UserRoleEnum.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/securityhotspotstore/8/5/8575a4a9227f737f635a4f231d77f3025443a834",
+                "outputPath": ".idea/sonarlint/securityhotspotstore/8/5/8575a4a9227f737f635a4f231d77f3025443a834.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/model/dto/post/PostUpdateRequest.class",
+                "outputPath": "target/classes/com/shing/springbootinit/model/dto/post/PostUpdateRequest.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/securityhotspotstore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d",
+                "outputPath": ".idea/sonarlint/securityhotspotstore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/mapper/PostMapper.class",
+                "outputPath": "target/classes/com/shing/springbootinit/mapper/PostMapper.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/common/ErrorCode.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/common/ErrorCode.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee/storage_v2/_src_/schema/shing_api.SJgzQg.meta",
+                "outputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee/storage_v2/_src_/schema/shing_api.SJgzQg.meta.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/config/JsonConfig.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/config/JsonConfig.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/constant/UserConstant.class",
+                "outputPath": "target/classes/com/shing/springbootinit/constant/UserConstant.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "pom.xml",
+                "outputPath": "pom.xml.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/model/dto/post/PostEsDTO.class",
+                "outputPath": "target/classes/com/shing/springbootinit/model/dto/post/PostEsDTO.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/securityhotspotstore/1/7/17a4fea043b352d910eac7acb7ac99c355d6ebb0",
+                "outputPath": ".idea/sonarlint/securityhotspotstore/1/7/17a4fea043b352d910eac7acb7ac99c355d6ebb0.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/common/DeleteRequest.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/common/DeleteRequest.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee/storage_v2/_src_/schema/sys.zb4BAA.meta",
+                "outputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee/storage_v2/_src_/schema/sys.zb4BAA.meta.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/config/Knife4jConfig.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/config/Knife4jConfig.java.ftl",
+                "type": "file",
+                "generateType": "dynamic",
+                "condition": "needDocs"
+            },
+            {
+                "inputPath": ".idea/sonarlint/securityhotspotstore/f/4/f4df9fe5b6a36ad86a05bd83d91cf824a2699a4b",
+                "outputPath": ".idea/sonarlint/securityhotspotstore/f/4/f4df9fe5b6a36ad86a05bd83d91cf824a2699a4b.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/model/dto/user/UserQueryRequest.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/model/dto/user/UserQueryRequest.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": ".idea/workspace.xml",
+                "outputPath": ".idea/workspace.xml.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": ".idea/sonarlint/issuestore/6/6/6651ddff6eb82c840ced7c1dddee15c6e1913dd4",
+                "outputPath": ".idea/sonarlint/issuestore/6/6/6651ddff6eb82c840ced7c1dddee15c6e1913dd4.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee/storage_v2/_src_/schema/shing_bi.WXAa4Q.meta",
+                "outputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee/storage_v2/_src_/schema/shing_bi.WXAa4Q.meta.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/constant/UserConstant.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/constant/UserConstant.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee/storage_v2/_src_/schema/shing_oj.7XEa4Q.meta",
+                "outputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee/storage_v2/_src_/schema/shing_oj.7XEa4Q.meta.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee/storage_v2/_src_/schema/information_schema.FNRwLQ.meta",
+                "outputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee/storage_v2/_src_/schema/information_schema.FNRwLQ.meta.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/model/dto/post/PostQueryRequest.class",
+                "outputPath": "target/classes/com/shing/springbootinit/model/dto/post/PostQueryRequest.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/model/dto/user/UserAddRequest.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/model/dto/user/UserAddRequest.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/common/PageRequest.class",
+                "outputPath": "target/classes/com/shing/springbootinit/common/PageRequest.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/config/Knife4jConfig.class",
+                "outputPath": "target/classes/com/shing/springbootinit/config/Knife4jConfig.class.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": ".idea/sonarlint/securityhotspotstore/e/c/ec976ef9faaadb1a0eb67851efbf74a57dd11a07",
+                "outputPath": ".idea/sonarlint/securityhotspotstore/e/c/ec976ef9faaadb1a0eb67851efbf74a57dd11a07.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/model/dto/user/UserLoginRequest.class",
+                "outputPath": "target/classes/com/shing/springbootinit/model/dto/user/UserLoginRequest.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/application.yml",
+                "outputPath": "target/classes/application.yml.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/issuestore/8/d/8dd6708caa242054fa0c852f223a77d77dc1e299",
+                "outputPath": ".idea/sonarlint/issuestore/8/d/8dd6708caa242054fa0c852f223a77d77dc1e299.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/resources/mapper/UserMapper.xml",
+                "outputPath": "src/main/resources/mapper/UserMapper.xml.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": ".idea/encodings.xml",
+                "outputPath": ".idea/encodings.xml.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/config/MyBatisPlusConfig.class",
+                "outputPath": "target/classes/com/shing/springbootinit/config/MyBatisPlusConfig.class.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/controller/PostController.class",
+                "outputPath": "target/classes/com/shing/springbootinit/controller/PostController.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/issuestore/b/3/b3e54a79aba72ef2f76d9a43f0529770d30f4f77",
+                "outputPath": ".idea/sonarlint/issuestore/b/3/b3e54a79aba72ef2f76d9a43f0529770d30f4f77.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/issuestore/a/a/aabc604e1c8b1bcb5ecb64e763aa76fc061722f7",
+                "outputPath": ".idea/sonarlint/issuestore/a/a/aabc604e1c8b1bcb5ecb64e763aa76fc061722f7.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/test/.DS_Store",
+                "outputPath": "src/test/.DS_Store.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/issuestore/c/8/c86fc4f949abadac455a31d895b7715b632273aa",
+                "outputPath": ".idea/sonarlint/issuestore/c/8/c86fc4f949abadac455a31d895b7715b632273aa.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee.xml",
+                "outputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee.xml.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/exception/BusinessException.class",
+                "outputPath": "target/classes/com/shing/springbootinit/exception/BusinessException.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/securityhotspotstore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec",
+                "outputPath": ".idea/sonarlint/securityhotspotstore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/securityhotspotstore/5/f/5f1e32492ad0be03350fa156de7652f0cd0019a9",
+                "outputPath": ".idea/sonarlint/securityhotspotstore/5/f/5f1e32492ad0be03350fa156de7652f0cd0019a9.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/compiler.xml",
+                "outputPath": ".idea/compiler.xml.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/MainApplication.class",
+                "outputPath": "target/classes/com/shing/springbootinit/MainApplication.class.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/model/dto/post/PostAddRequest.class",
+                "outputPath": "target/classes/com/shing/springbootinit/model/dto/post/PostAddRequest.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/model/dto/user/UserQueryRequest.class",
+                "outputPath": "target/classes/com/shing/springbootinit/model/dto/user/UserQueryRequest.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/common/PageRequest.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/common/PageRequest.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": ".idea/.gitignore",
+                "outputPath": ".idea/.gitignore.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/common/ErrorCode.class",
+                "outputPath": "target/classes/com/shing/springbootinit/common/ErrorCode.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/vcs.xml",
+                "outputPath": ".idea/vcs.xml.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/issuestore/index.pb",
+                "outputPath": ".idea/sonarlint/issuestore/index.pb.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".gitignore",
+                "outputPath": ".gitignore.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/model/entity/Post.class",
+                "outputPath": "target/classes/com/shing/springbootinit/model/entity/Post.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/model/entity/User.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/model/entity/User.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/exception/ThrowUtils.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/exception/ThrowUtils.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": ".idea/sonarlint/securityhotspotstore/6/6/6651ddff6eb82c840ced7c1dddee15c6e1913dd4",
+                "outputPath": ".idea/sonarlint/securityhotspotstore/6/6/6651ddff6eb82c840ced7c1dddee15c6e1913dd4.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/common/BaseResponse.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/common/BaseResponse.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/exception/BusinessException.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/exception/BusinessException.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/model/dto/user/UserRegisterRequest.class",
+                "outputPath": "target/classes/com/shing/springbootinit/model/dto/user/UserRegisterRequest.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/model/dto/user/UserAddRequest.class",
+                "outputPath": "target/classes/com/shing/springbootinit/model/dto/user/UserAddRequest.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "README.md",
+                "outputPath": "README.md.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/issuestore/5/d/5d54ae1ebd4ac52427008b4df592f2563ddb1dc1",
+                "outputPath": ".idea/sonarlint/issuestore/5/d/5d54ae1ebd4ac52427008b4df592f2563ddb1dc1.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/dataSources.local.xml",
+                "outputPath": ".idea/dataSources.local.xml.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".DS_Store",
+                "outputPath": ".DS_Store.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/.DS_Store",
+                "outputPath": "src/.DS_Store.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee/storage_v2/_src_/schema/shing_so.bnIa4Q.meta",
+                "outputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee/storage_v2/_src_/schema/shing_so.bnIa4Q.meta.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/exception/GlobalExceptionHandler.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/exception/GlobalExceptionHandler.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": ".idea/misc.xml",
+                "outputPath": ".idea/misc.xml.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/securityhotspotstore/d/b/dbeb72b2825295e52b49e920570c83c38f5bb807",
+                "outputPath": ".idea/sonarlint/securityhotspotstore/d/b/dbeb72b2825295e52b49e920570c83c38f5bb807.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/jarRepositories.xml",
+                "outputPath": ".idea/jarRepositories.xml.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/mapper/UserMapper.xml",
+                "outputPath": "target/classes/mapper/UserMapper.xml.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/common/ResultUtils.class",
+                "outputPath": "target/classes/com/shing/springbootinit/common/ResultUtils.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/securityhotspotstore/5/d/5d54ae1ebd4ac52427008b4df592f2563ddb1dc1",
+                "outputPath": ".idea/sonarlint/securityhotspotstore/5/d/5d54ae1ebd4ac52427008b4df592f2563ddb1dc1.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/issuestore/8/5/8575a4a9227f737f635a4f231d77f3025443a834",
+                "outputPath": ".idea/sonarlint/issuestore/8/5/8575a4a9227f737f635a4f231d77f3025443a834.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/mapper/PostMapper.xml",
+                "outputPath": "target/classes/mapper/PostMapper.xml.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": ".idea/sonarlint/issuestore/e/c/ec976ef9faaadb1a0eb67851efbf74a57dd11a07",
+                "outputPath": ".idea/sonarlint/issuestore/e/c/ec976ef9faaadb1a0eb67851efbf74a57dd11a07.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/service/PostService.class",
+                "outputPath": "target/classes/com/shing/springbootinit/service/PostService.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee/storage_v2/_src_/schema/performance_schema.kIw0nw.meta",
+                "outputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee/storage_v2/_src_/schema/performance_schema.kIw0nw.meta.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/model/dto/user/UserLoginRequest.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/model/dto/user/UserLoginRequest.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/model/enums/UserRoleEnum.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/model/enums/UserRoleEnum.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "Dockerfile",
+                "outputPath": "Dockerfile.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/issuestore/d/b/dbeb72b2825295e52b49e920570c83c38f5bb807",
+                "outputPath": ".idea/sonarlint/issuestore/d/b/dbeb72b2825295e52b49e920570c83c38f5bb807.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/controller/UserController.class",
+                "outputPath": "target/classes/com/shing/springbootinit/controller/UserController.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/MainApplication.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/MainApplication.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": ".idea/sonarlint/securityhotspotstore/c/8/c86fc4f949abadac455a31d895b7715b632273aa",
+                "outputPath": ".idea/sonarlint/securityhotspotstore/c/8/c86fc4f949abadac455a31d895b7715b632273aa.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/service/UserService.class",
+                "outputPath": "target/classes/com/shing/springbootinit/service/UserService.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/config/JsonConfig.class",
+                "outputPath": "target/classes/com/shing/springbootinit/config/JsonConfig.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/exception/GlobalExceptionHandler.class",
+                "outputPath": "target/classes/com/shing/springbootinit/exception/GlobalExceptionHandler.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d",
+                "outputPath": ".idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/service/UserService.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/service/UserService.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": ".idea/sonarlint/securityhotspotstore/b/3/b3e54a79aba72ef2f76d9a43f0529770d30f4f77",
+                "outputPath": ".idea/sonarlint/securityhotspotstore/b/3/b3e54a79aba72ef2f76d9a43f0529770d30f4f77.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "springboot-init.iml",
+                "outputPath": "springboot-init.iml.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/exception/ThrowUtils.class",
+                "outputPath": "target/classes/com/shing/springbootinit/exception/ThrowUtils.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/securityhotspotstore/3/c/3c00146496f0bb9b1b5f7462ec97880853d1f212",
+                "outputPath": ".idea/sonarlint/securityhotspotstore/3/c/3c00146496f0bb9b1b5f7462ec97880853d1f212.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/securityhotspotstore/index.pb",
+                "outputPath": ".idea/sonarlint/securityhotspotstore/index.pb.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/config/MyBatisPlusConfig.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/config/MyBatisPlusConfig.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "src/main/resources/application.yml",
+                "outputPath": "src/main/resources/application.yml.ftl",
+                "type": "file",
+                "generateType": "dynamic",
+                "condition": "needDocs"
+            },
+            {
+                "inputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee/storage_v2/_src_/schema/mysql.osA4Bg.meta",
+                "outputPath": ".idea/dataSources/e420378c-901f-4bec-9fda-e09d6712f7ee/storage_v2/_src_/schema/mysql.osA4Bg.meta.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/common/BaseResponse.class",
+                "outputPath": "target/classes/com/shing/springbootinit/common/BaseResponse.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/common/ResultUtils.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/common/ResultUtils.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": ".idea/dataSources.xml",
+                "outputPath": ".idea/dataSources.xml.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/securityhotspotstore/8/d/8dd6708caa242054fa0c852f223a77d77dc1e299",
+                "outputPath": ".idea/sonarlint/securityhotspotstore/8/d/8dd6708caa242054fa0c852f223a77d77dc1e299.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/issuestore/5/f/5f1e32492ad0be03350fa156de7652f0cd0019a9",
+                "outputPath": ".idea/sonarlint/issuestore/5/f/5f1e32492ad0be03350fa156de7652f0cd0019a9.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/common/DeleteRequest.class",
+                "outputPath": "target/classes/com/shing/springbootinit/common/DeleteRequest.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/issuestore/3/c/3c00146496f0bb9b1b5f7462ec97880853d1f212",
+                "outputPath": ".idea/sonarlint/issuestore/3/c/3c00146496f0bb9b1b5f7462ec97880853d1f212.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/service/impl/UserServiceImpl.class",
+                "outputPath": "target/classes/com/shing/springbootinit/service/impl/UserServiceImpl.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/model/dto/user/UserUpdateRequest.class",
+                "outputPath": "target/classes/com/shing/springbootinit/model/dto/user/UserUpdateRequest.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/config/CorsConfig.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/config/CorsConfig.java.ftl",
+                "type": "file",
+                "generateType": "dynamic",
+                "condition": "needCors"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/model/dto/user/UserUpdateRequest.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/model/dto/user/UserUpdateRequest.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/config/CorsConfig.class",
+                "outputPath": "target/classes/com/shing/springbootinit/config/CorsConfig.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/mapper/UserMapper.class",
+                "outputPath": "target/classes/com/shing/springbootinit/mapper/UserMapper.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/controller/UserController.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/controller/UserController.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": ".idea/inspectionProfiles/Project_Default.xml",
+                "outputPath": ".idea/inspectionProfiles/Project_Default.xml.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/model/entity/User.class",
+                "outputPath": "target/classes/com/shing/springbootinit/model/entity/User.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/securityhotspotstore/a/a/aabc604e1c8b1bcb5ecb64e763aa76fc061722f7",
+                "outputPath": ".idea/sonarlint/securityhotspotstore/a/a/aabc604e1c8b1bcb5ecb64e763aa76fc061722f7.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": ".idea/sonarlint/issuestore/1/7/17a4fea043b352d910eac7acb7ac99c355d6ebb0",
+                "outputPath": ".idea/sonarlint/issuestore/1/7/17a4fea043b352d910eac7acb7ac99c355d6ebb0.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/service/impl/UserServiceImpl.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/service/impl/UserServiceImpl.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": ".idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec",
+                "outputPath": ".idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "target/classes/com/shing/springbootinit/service/impl/PostServiceImpl.class",
+                "outputPath": "target/classes/com/shing/springbootinit/service/impl/PostServiceImpl.class.ftl",
+                "type": "file",
+                "generateType": "static"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/mapper/UserMapper.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/mapper/UserMapper.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": "src/main/java/com/shing/springbootinit/model/dto/user/UserRegisterRequest.java",
+                "outputPath": "src/main/java/com/shing/springbootinit/model/dto/user/UserRegisterRequest.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            },
+            {
+                "inputPath": ".idea/sonarlint/issuestore/f/4/f4df9fe5b6a36ad86a05bd83d91cf824a2699a4b",
+                "outputPath": ".idea/sonarlint/issuestore/f/4/f4df9fe5b6a36ad86a05bd83d91cf824a2699a4b.ftl",
+                "type": "file",
+                "generateType": "static"
+            }
+        ]
+    },
+    "modelConfig": {
+        "models": [
+            {
+                "type": "MysqlConfig",
+                "description": "用于生成MySQL数据库配置",
+                "groupKey": "mysqlConfig",
+                "groupName": "MySQL数据库配置",
+                "models": [
+                    {
+                        "fieldName": "password",
+                        "type": "String",
+                        "description": "密码",
+                        "defaultValue": "12345678Lu"
+                    },
+                    {
+                        "fieldName": "url",
+                        "type": "String",
+                        "description": "地址",
+                        "defaultValue": "jdbc:mysql://localhost:3308/shing_bi"
+                    },
+                    {
+                        "fieldName": "username",
+                        "type": "String",
+                        "description": "用户名",
+                        "defaultValue": "root"
+                    }
+                ]
+            },
+            {
+                "type": "DocsConfig",
+                "description": "用于生成接口文档配置",
+                "groupKey": "docsConfig",
+                "groupName": "接口文档配置",
+                "models": [
+                    {
+                        "fieldName": "description",
+                        "type": "String",
+                        "description": "接口文档描述",
+                        "defaultValue": "springboot-init"
+                    },
+                    {
+                        "fieldName": "title",
+                        "type": "String",
+                        "description": "接口文档标题",
+                        "defaultValue": "接口文档"
+                    },
+                    {
+                        "fieldName": "version",
+                        "type": "String",
+                        "description": "接口文档版本",
+                        "defaultValue": "1.0"
+                    }
+                ],
+                "condition": "needDocs"
+            },
+            {
+                "fieldName": "needDocs",
+                "type": "boolean",
+                "description": "是否开启接口文档功能",
+                "defaultValue": true
+            },
+            {
+                "fieldName": "needPost",
+                "type": "boolean",
+                "description": "是否开启帖子功能",
+                "defaultValue": true
+            },
+            {
+                "fieldName": "needCors",
+                "type": "boolean",
+                "description": "是否开启跨域功能",
+                "defaultValue": true
+            },
+            {
+                "fieldName": "needEs",
+                "type": "boolean",
+                "description": "是否开启ES功能",
+                "defaultValue": true
+            },
+            {
+                "fieldName": "basePackage",
+                "type": "String",
+                "description": "基础包名",
+                "defaultValue": "com.shing"
+            },
+            {
+                "fieldName": "needRedis",
+                "type": "boolean",
+                "description": "是否开启Redis功能",
+                "defaultValue": true
+            }
+        ]
+    }
+}

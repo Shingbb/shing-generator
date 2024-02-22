@@ -8,7 +8,7 @@ import freemarker.template.TemplateException;
 import java.io.*;
 
 /**
- * @author LBC
+ * @author shing
  * 动态文件生成
  */
 public class DynamicFileGenerator {

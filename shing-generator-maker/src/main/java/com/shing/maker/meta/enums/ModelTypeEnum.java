@@ -3,7 +3,7 @@ package com.shing.maker.meta.enums;
 /**
  * 模型类型枚举
  *
- * @author LBC
+ * @author shing
  */
 public enum ModelTypeEnum {
     STRING("字符串", "String"),

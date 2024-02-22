@@ -6,7 +6,7 @@ import ${basePackage}.cli.command.ListCommand;
 
 import picocli.CommandLine;
 /**
- * @author LBC
+ * @author shing
  */
 @CommandLine.Command(name = "${name}", mixinStandardHelpOptions = true)
 public class CommandExecutor implements Runnable {

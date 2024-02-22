@@ -3,7 +3,7 @@ package com.shing.maker.generator;
 import java.io.*;
 
 /**
- * @author LBC
+ * @author shing
  */
 public class JarGenerator {
 

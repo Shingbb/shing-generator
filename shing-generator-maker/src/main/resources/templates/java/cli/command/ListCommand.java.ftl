@@ -12,8 +12,7 @@ public class ListCommand implements Runnable {
     @Override
     public void run() {
         // 输入路径
-//        String inputPath = new File(parentFile, "shing-generator-demo-projects/acm-template").getAbsolutePath();
-        String inputPath = new File("F:/Project/shing-generator/shing-generator-demo-projects/acm-template").getAbsolutePath();
+        String inputPath = "${fileConfig.inputRootPath}";
         List<File> files = FileUtil.loopFiles(inputPath);
         for (File file : files) {
             System.out.println(file);

@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 /**
  * 元信息校验
  *
- * @author LBC
+ * @author shing
  */
 public class MetaValidator {
 

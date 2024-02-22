@@ -12,7 +12,7 @@ import java.util.concurrent.Callable;
 
 */
 /**
- * @author LBC
+ * @author shing
  *//*
 
 @Command(name = "generate", description = "生成代码", mixinStandardHelpOptions = true)

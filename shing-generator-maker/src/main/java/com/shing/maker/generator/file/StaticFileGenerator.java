@@ -5,7 +5,7 @@ import cn.hutool.core.io.FileUtil;
 /**
  * 静态文件生成器
  *
- * @author LBC
+ * @author shing
  */
 public class StaticFileGenerator {
 

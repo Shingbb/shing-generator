@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * @author LBC
+ * @author shing
  * 核心生成器
  */
 public class FileGenerator {

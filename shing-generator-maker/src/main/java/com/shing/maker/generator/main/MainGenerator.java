@@ -6,7 +6,7 @@ import java.io.IOException;
 
 /**
  * 生成代码生成器
- * @author LBC
+ * @author shing
  */
 public class MainGenerator  extends  GenerateTemplate {
     @Override

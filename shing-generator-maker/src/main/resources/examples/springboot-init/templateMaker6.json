@@ -1,0 +1,42 @@
+{
+  "id": 2,
+  "fileConfig": {
+    "files": [
+      {
+        "path": "src/main/resources/application.yml",
+        "condition": "needDocs"
+      }
+    ]
+  },
+  "modelConfig": {
+    "modelGroupConfig": {
+      "groupKey": "mysqlConfig",
+      "groupName": "MySQL数据库配置",
+      "type": "MysqlConfig",
+      "description": "用于生成MySQL数据库配置"
+    },
+    "models": [
+      {
+        "fieldName": "url",
+        "type": "String",
+        "description": "地址",
+        "defaultValue": "jdbc:mysql://localhost:3308/shing_bi",
+        "replaceText": "jdbc:mysql://localhost:3308/shing_bi"
+      },
+      {
+        "fieldName": "username",
+        "type": "String",
+        "description": "用户名",
+        "defaultValue": "root",
+        "replaceText": "root"
+      },
+      {
+        "fieldName": "password",
+        "type": "String",
+        "description": "密码",
+        "defaultValue": "12345678Lu",
+        "replaceText": "12345678Lu"
+      }
+    ]
+  }
+}
