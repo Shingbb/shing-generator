@@ -294,15 +294,14 @@ public class TemplateMaker {
 
         // 文件配置信息
         Meta.FileConfig.FileInfo fileInfo = new Meta.FileConfig.FileInfo();
-        fileInfo.setInputPath(fileInputPath);
-        fileInfo.setOutputPath(fileOutputPath);
-        fileInfo.setCondition(fileInfoConfig.getCondition());
+        // 注意文件输入路径要和输出路径反转
+        fileInfo.setInputPath(fileOutputPath);
+        fileInfo.setOutputPath(fileInputPath);
         fileInfo.setType(FileTypeEnum.FILE.getValue());
         fileInfo.setGenerateType(FileGenerateTypeEnum.DYNAMIC.getValue());
 
         // 是否更改了文件内容
         boolean contentEquals = newFileContent.equals(fileContent);
-
         // 和原文件一致，没有挖坑，则为静态生成
         if (!hasTemplateFile) {
             if (contentEquals) {

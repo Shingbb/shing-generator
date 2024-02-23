@@ -14,7 +14,7 @@ import java.io.*;
 public class DynamicFileGenerator {
 
     /**
-     * 生成文件
+     * 使用相对路径生成文件
      *
      * @param inputPath  模板文件输入路径
      * @param outputPath 输出路径
