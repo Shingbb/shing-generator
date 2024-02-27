@@ -1,0 +1,24 @@
+{
+    "name": "acm-template-generator",
+    "description": " ACM 实例模板器",
+    "fileConfig": {
+        "sourceRootPath": "F:/Project/shing-generator/shing-generator-demo-projects/acm-template",
+        "files": [
+            {
+                "inputPath": "/src/com/shing/acm/MainTemplate.java",
+                "outputPath": "/src/com/shing/acm/MainTemplate.java.ftl",
+                "type": "file",
+                "generateType": "dynamic"
+            }
+        ]
+    },
+    "modelConfig": {
+        "models": [
+            {
+                "fieldName": "outputText",
+                "type": "String",
+                "description": "Sum ="
+            }
+        ]
+    }
+}
