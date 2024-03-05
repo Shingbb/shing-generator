@@ -134,8 +134,8 @@ public class GeneratorVO implements Serializable {
         }
         GeneratorVO generatorVO = new GeneratorVO();
         BeanUtils.copyProperties(generator, generatorVO);
-        generatorVO.setTags(JSONUtil.toList(generator.getTags(), String.class));
         // 字符串转对象
+        generatorVO.setTags(JSONUtil.toList(generator.getTags(), String.class));
         generatorVO.setFileConfig(JSONUtil.toBean(generator.getFileConfig(), Meta.FileConfig.class));
         generatorVO.setModelConfig(JSONUtil.toBean(generator.getModelConfig(), Meta.ModelConfig.class));
         return generatorVO;

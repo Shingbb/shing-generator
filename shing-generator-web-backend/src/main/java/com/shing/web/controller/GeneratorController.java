@@ -1,5 +1,6 @@
 package com.shing.web.controller;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.shing.web.annotation.AuthCheck;
@@ -10,6 +11,7 @@ import com.shing.web.common.ResultUtils;
 import com.shing.web.constant.UserConstant;
 import com.shing.web.exception.BusinessException;
 import com.shing.web.exception.ThrowUtils;
+import com.shing.web.meta.Meta;
 import com.shing.web.model.dto.generator.GeneratorAddRequest;
 import com.shing.web.model.dto.generator.GeneratorEditRequest;
 import com.shing.web.model.dto.generator.GeneratorQueryRequest;
@@ -21,6 +23,7 @@ import com.shing.web.service.GeneratorService;
 import com.shing.web.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -29,14 +32,11 @@ import java.util.List;
 
 /**
  * 生成器接口
- *
-
  */
 @RestController
 @RequestMapping("/generator")
 @Slf4j
 public class GeneratorController {
-
     @Resource
     private GeneratorService generatorService;
 
@@ -60,20 +60,25 @@ public class GeneratorController {
         Generator generator = new Generator();
         BeanUtils.copyProperties(generatorAddRequest, generator);
         List<String> tags = generatorAddRequest.getTags();
-        if (tags != null) {
-            generator.setTags(JSONUtil.toJsonStr(tags));
-        }
+        generator.setTags(JSONUtil.toJsonStr(tags));
+        Meta.FileConfig fileConfig = generatorAddRequest.getFileConfig();
+        generator.setFileConfig(JSONUtil.toJsonStr(fileConfig));
+        Meta.ModelConfig modelConfig = generatorAddRequest.getModelConfig();
+        generator.setFileConfig(JSONUtil.toJsonStr(modelConfig));
+
+        // 参数校验
         generatorService.validGenerator(generator, true);
         User loginUser = userService.getLoginUser(request);
         generator.setUserId(loginUser.getId());
+        generator.setStatus(0);
         boolean result = generatorService.save(generator);
-        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
-        long newGeneratorId = generator.getId();
+        ThrowUtils.throwIf(!result, ErrorCode.PARAMS_ERROR);
+        Long newGeneratorId = generator.getId();
         return ResultUtils.success(newGeneratorId);
     }
 
     /**
-     * 删除
+     * 删除（仅管理员和用户本人）
      *
      * @param deleteRequest
      * @param request
@@ -85,11 +90,11 @@ public class GeneratorController {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         User user = userService.getLoginUser(request);
-        long id = deleteRequest.getId();
+        Long id = deleteRequest.getId();
         // 判断是否存在
         Generator oldGenerator = generatorService.getById(id);
-        ThrowUtils.throwIf(oldGenerator == null, ErrorCode.NOT_FOUND_ERROR);
-        // 仅本人或管理员可删除
+        ThrowUtils.throwIf(oldGenerator == null, ErrorCode.PARAMS_ERROR);
+        // 仅本人或管理员课删除
         if (!oldGenerator.getUserId().equals(user.getId()) && !userService.isAdmin(request)) {
             throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
         }
@@ -101,23 +106,27 @@ public class GeneratorController {
      * 更新（仅管理员）
      *
      * @param generatorUpdateRequest
+     * @param request
      * @return
      */
     @PostMapping("/update")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
-    public BaseResponse<Boolean> updateGenerator(@RequestBody GeneratorUpdateRequest generatorUpdateRequest) {
-        if (generatorUpdateRequest == null || generatorUpdateRequest.getId() <= 0) {
+    public BaseResponse<Boolean> updateGenerator(@RequestBody GeneratorUpdateRequest generatorUpdateRequest, HttpServletRequest request) {
+        if (generatorUpdateRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         Generator generator = new Generator();
         BeanUtils.copyProperties(generatorUpdateRequest, generator);
         List<String> tags = generatorUpdateRequest.getTags();
-        if (tags != null) {
-            generator.setTags(JSONUtil.toJsonStr(tags));
-        }
+        generator.setTags(JSONUtil.toJsonStr(tags));
+        Meta.FileConfig fileConfig = generatorUpdateRequest.getFileConfig();
+        generator.setFileConfig(JSONUtil.toJsonStr(fileConfig));
+        Meta.ModelConfig modelConfig = generatorUpdateRequest.getModelConfig();
+        generator.setModelConfig(JSONUtil.toJsonStr(modelConfig));
+
         // 参数校验
         generatorService.validGenerator(generator, false);
-        long id = generatorUpdateRequest.getId();
+        Long id = generatorUpdateRequest.getId();
         // 判断是否存在
         Generator oldGenerator = generatorService.getById(id);
         ThrowUtils.throwIf(oldGenerator == null, ErrorCode.NOT_FOUND_ERROR);
@@ -129,10 +138,11 @@ public class GeneratorController {
      * 根据 id 获取
      *
      * @param id
+     * @param request
      * @return
      */
     @GetMapping("/get/vo")
-    public BaseResponse<GeneratorVO> getGeneratorVOById(long id, HttpServletRequest request) {
+    public BaseResponse<GeneratorVO> getGeneratorVO(Long id, HttpServletRequest request) {
         if (id <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -168,14 +178,24 @@ public class GeneratorController {
      */
     @PostMapping("/list/page/vo")
     public BaseResponse<Page<GeneratorVO>> listGeneratorVOByPage(@RequestBody GeneratorQueryRequest generatorQueryRequest,
-            HttpServletRequest request) {
+                                                                 HttpServletRequest request) {
         long current = generatorQueryRequest.getCurrent();
         long size = generatorQueryRequest.getPageSize();
         // 限制爬虫
         ThrowUtils.throwIf(size > 20, ErrorCode.PARAMS_ERROR);
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
         Page<Generator> generatorPage = generatorService.page(new Page<>(current, size),
                 generatorService.getQueryWrapper(generatorQueryRequest));
-        return ResultUtils.success(generatorService.getGeneratorVOPage(generatorPage, request));
+        stopWatch.stop();
+        System.out.println("查询生成器：" + stopWatch.getTotalTimeMillis());
+
+        stopWatch = new StopWatch();
+        stopWatch.start();
+        Page<GeneratorVO> generatorVOPage = generatorService.getGeneratorVOPage(generatorPage, request);
+        stopWatch.stop();
+        System.out.println("查询关联数据：" + stopWatch.getTotalTimeMillis());
+        return ResultUtils.success(generatorVOPage);
     }
 
     /**
@@ -187,7 +207,7 @@ public class GeneratorController {
      */
     @PostMapping("/my/list/page/vo")
     public BaseResponse<Page<GeneratorVO>> listMyGeneratorVOByPage(@RequestBody GeneratorQueryRequest generatorQueryRequest,
-            HttpServletRequest request) {
+                                                                   HttpServletRequest request) {
         if (generatorQueryRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -203,7 +223,7 @@ public class GeneratorController {
     }
 
     // endregion
-    
+
     /**
      * 编辑（用户）
      *
@@ -219,9 +239,12 @@ public class GeneratorController {
         Generator generator = new Generator();
         BeanUtils.copyProperties(generatorEditRequest, generator);
         List<String> tags = generatorEditRequest.getTags();
-        if (tags != null) {
-            generator.setTags(JSONUtil.toJsonStr(tags));
-        }
+        generator.setTags(JSONUtil.toJsonStr(tags));
+        Meta.FileConfig fileConfig = generatorEditRequest.getFileConfig();
+        generator.setFileConfig(JSONUtil.toJsonStr(fileConfig));
+        Meta.ModelConfig modelConfig = generatorEditRequest.getModelConfig();
+        generator.setModelConfig(JSONUtil.toJsonStr(modelConfig));
+
         // 参数校验
         generatorService.validGenerator(generator, false);
         User loginUser = userService.getLoginUser(request);
@@ -236,5 +259,6 @@ public class GeneratorController {
         boolean result = generatorService.updateById(generator);
         return ResultUtils.success(result);
     }
+
 
 }
