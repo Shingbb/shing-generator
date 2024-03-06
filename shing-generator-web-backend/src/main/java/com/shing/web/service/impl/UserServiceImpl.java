@@ -1,5 +1,6 @@
 package com.shing.web.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -104,7 +105,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "用户不存在或密码错误");
         }
         // 3. 记录用户的登录态
-        request.getSession().setAttribute(USER_LOGIN_STATE, user);
+        // session 改造成 sa-token
+//        request.getSession().setAttribute(USER_LOGIN_STATE, user);
+        StpUtil.login(user.getId());
+        StpUtil.getTokenSession().set(USER_LOGIN_STATE, user);
+        // 获取当前会话的 token 值
+        System.out.println(StpUtil.getTokenValue());
+        // 获取当前`StpLogic`的 token 名称
+        System.out.println(StpUtil.getTokenName());
+        // 获取当前会话剩余有效期（单位：s，返回-1代表永久有效）
+        System.out.println(StpUtil.getTokenTimeout());
+        // 获取当前会话的 token 信息参数
+        System.out.println(StpUtil.getTokenInfo());
         return this.getLoginUserVO(user);
     }
 
@@ -117,17 +129,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public User getLoginUser(HttpServletRequest request) {
         // 先判断是否已登录
-        Object userObj = request.getSession().getAttribute(USER_LOGIN_STATE);
-        User currentUser = (User) userObj;
-        if (currentUser == null || currentUser.getId() == null) {
+        if (!StpUtil.isLogin()){
             throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
         }
+        Object userObj = StpUtil.getSession().get(USER_LOGIN_STATE);
+        User currentUser = (User) userObj;
+        /*if (currentUser == null || currentUser.getId() == null) {
+            throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
+        }*/
         // 从数据库查询（追求性能的话可以注释，直接走缓存）
-        long userId = currentUser.getId();
+       /* long userId = currentUser.getId();
         currentUser = this.getById(userId);
         if (currentUser == null) {
             throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
-        }
+        }*/
         return currentUser;
     }
 
@@ -140,7 +155,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public User getLoginUserPermitNull(HttpServletRequest request) {
         // 先判断是否已登录
-        Object userObj = request.getSession().getAttribute(USER_LOGIN_STATE);
+//        Object userObj = request.getSession().getAttribute(USER_LOGIN_STATE);
+        Object userObj = StpUtil.getTokenSession().get(USER_LOGIN_STATE);
         User currentUser = (User) userObj;
         if (currentUser == null || currentUser.getId() == null) {
             return null;
@@ -159,7 +175,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public boolean isAdmin(HttpServletRequest request) {
         // 仅管理员可查询
-        Object userObj = request.getSession().getAttribute(USER_LOGIN_STATE);
+//        Object userObj = request.getSession().getAttribute(USER_LOGIN_STATE);
+        // session -> sa-token
+        Object userObj = StpUtil.getTokenSession().get(USER_LOGIN_STATE);
         User user = (User) userObj;
         return isAdmin(user);
     }
@@ -176,11 +194,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public boolean userLogout(HttpServletRequest request) {
-        if (request.getSession().getAttribute(USER_LOGIN_STATE) == null) {
+        /*if (request.getSession().getAttribute(USER_LOGIN_STATE) == null) {
+            throw new BusinessException(ErrorCode.OPERATION_ERROR, "未登录");
+        }*/
+        if (!StpUtil.isLogin() || StpUtil.getTokenSession().get(USER_LOGIN_STATE) == null) {
             throw new BusinessException(ErrorCode.OPERATION_ERROR, "未登录");
         }
         // 移除登录态
-        request.getSession().removeAttribute(USER_LOGIN_STATE);
+//        request.getSession().removeAttribute(USER_LOGIN_STATE);
+        StpUtil.logout();
         return true;
     }
 
