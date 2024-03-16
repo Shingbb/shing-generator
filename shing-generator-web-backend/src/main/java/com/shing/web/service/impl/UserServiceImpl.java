@@ -42,6 +42,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     public static final String SALT = "shing";
 
+    /**
+     *  用户注册
+     * @param userAccount   用户账户
+     * @param userPassword  用户密码
+     * @param checkPassword 校验密码
+     * @return
+     */
     @Override
     public long userRegister(String userAccount, String userPassword, String checkPassword) {
         // 1. 校验
@@ -80,6 +87,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
     }
 
+    /**
+     * 用户登陆
+     * @param userAccount  用户账户
+     * @param userPassword 用户密码
+     * @param request
+     * @return
+     */
     @Override
     public LoginUserVO userLogin(String userAccount, String userPassword, HttpServletRequest request) {
         // 1. 校验
@@ -132,17 +146,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (!StpUtil.isLogin()){
             throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
         }
-        Object userObj = StpUtil.getSession().get(USER_LOGIN_STATE);
+        // 先判断是否已登录
+        Object userObj = StpUtil.getTokenSession().get(USER_LOGIN_STATE);
         User currentUser = (User) userObj;
-        /*if (currentUser == null || currentUser.getId() == null) {
+        if (currentUser == null || currentUser.getId() == null) {
             throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
-        }*/
+        }
         // 从数据库查询（追求性能的话可以注释，直接走缓存）
-       /* long userId = currentUser.getId();
+        long userId = currentUser.getId();
         currentUser = this.getById(userId);
         if (currentUser == null) {
             throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
-        }*/
+        }
         return currentUser;
     }
 

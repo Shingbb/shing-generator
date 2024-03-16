@@ -4,7 +4,7 @@ generated
 .temp
 shing-generator.iml
 shing-generator-basic.iml
-
+application-local.yml
 
 ### Maven template
 target/

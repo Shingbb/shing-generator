@@ -4,7 +4,7 @@ import {listGeneratorByPageUsingPost} from '@/services/backend/generatorControll
 import {deleteUserUsingPost} from '@/services/backend/userController';
 import {PlusOutlined} from '@ant-design/icons';
 import type {ActionType, ProColumns} from '@ant-design/pro-components';
-import {PageContainer, ProTable} from '@ant-design/pro-components';
+import {ProTable} from '@ant-design/pro-components';
 import '@umijs/max';
 import {Button, message, Space, Tag, Typography} from 'antd';
 import React, {useRef, useState} from 'react';
@@ -158,89 +158,89 @@ const  GeneratorAdminPage: React.FC = () => {
       dataIndex: 'option',
       valueType: 'option',
       render: (_, record) => (
-        <Space size="middle">
-          <Typography.Link
-            onClick={() => {
-              setCurrentRow(record);
-              setUpdateModalVisible(true);
-            }}
-          >
-            修改
-          </Typography.Link>
-          <Typography.Link type="danger" onClick={() => handleDelete(record)}>
-            删除
-          </Typography.Link>
-        </Space>
+          <Space size="middle">
+            <Typography.Link
+                onClick={() => {
+                  setCurrentRow(record);
+                  setUpdateModalVisible(true);
+                }}
+            >
+              修改
+            </Typography.Link>
+            <Typography.Link type="danger" onClick={() => handleDelete(record)}>
+              删除
+            </Typography.Link>
+          </Space>
       ),
     },
   ];
   return (
-    <div className="generator-admin-page">
-      <Typography.Title level={4} style={{marginBottom: 16}}>
-        生成器管理
-      </Typography.Title>
+      <div className="generator-admin-page">
+        <Typography.Title level={4} style={{marginBottom: 16}}>
+          生成器管理
+        </Typography.Title>
         <ProTable<API.Generator>
-          headerTitle={'查询表格'}
-          actionRef={actionRef}
-          rowKey="key"
-          search={{
-            labelWidth: 120,
-          }}
-          toolBarRender={() => [
-            <Button
-              type="primary"
-              key="primary"
-              onClick={() => {
-                setCreateModalVisible(true);
-              }}
-            >
-              <PlusOutlined/> 新建
-            </Button>,
-          ]}
-          request={async (params, sort, filter) => {
-            const sortField = Object.keys(sort)?.[0];
-            const sortOrder = sort?.[sortField] ?? undefined;
+            headerTitle={'查询表格'}
+            actionRef={actionRef}
+            rowKey="key"
+            search={{
+              labelWidth: 120,
+            }}
+            toolBarRender={() => [
+              <Button
+                  type="primary"
+                  key="primary"
+                  onClick={() => {
+                    setCreateModalVisible(true);
+                  }}
+              >
+                <PlusOutlined/> 新建
+              </Button>,
+            ]}
+            request={async (params, sort, filter) => {
+              const sortField = Object.keys(sort)?.[0];
+              const sortOrder = sort?.[sortField] ?? undefined;
 
-            const {data, code} = await listGeneratorByPageUsingPost({
-              ...params,
-              sortField,
-              sortOrder,
-              ...filter,
-            } as API.UserQueryRequest);
+              const {data, code} = await listGeneratorByPageUsingPost({
+                ...params,
+                sortField,
+                sortOrder,
+                ...filter,
+              } as API.UserQueryRequest);
 
-            return {
-              success: code === 0,
-              data: data?.records || [],
-              total: Number(data?.total) || 0,
-            };
-          }}
-          columns={columns}
+              return {
+                success: code === 0,
+                data: data?.records || [],
+                total: Number(data?.total) || 0,
+              };
+            }}
+            columns={columns}
         />
         <CreateModal
-          visible={createModalVisible}
-          columns={columns}
-          onSubmit={() => {
-            setCreateModalVisible(false);
-            actionRef.current?.reload();
-          }}
-          onCancel={() => {
-            setCreateModalVisible(false);
-          }}
+            visible={createModalVisible}
+            columns={columns}
+            onSubmit={() => {
+              setCreateModalVisible(false);
+              actionRef.current?.reload();
+            }}
+            onCancel={() => {
+              setCreateModalVisible(false);
+            }}
         />
         <UpdateModal
-          visible={updateModalVisible}
-          columns={columns}
-          oldData={currentRow}
-          onSubmit={() => {
-            setUpdateModalVisible(false);
-            setCurrentRow(undefined);
-            actionRef.current?.reload();
-          }}
-          onCancel={() => {
-            setUpdateModalVisible(false);
-          }}
+            visible={updateModalVisible}
+            columns={columns}
+            oldData={currentRow}
+            onSubmit={() => {
+              setUpdateModalVisible(false);
+              setCurrentRow(undefined);
+              actionRef.current?.reload();
+            }}
+            onCancel={() => {
+              setUpdateModalVisible(false);
+            }}
         />
-    </div>
-      );
-      };
-      export default  GeneratorAdminPage;
+      </div>
+  );
+};
+export default  GeneratorAdminPage;

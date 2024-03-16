@@ -1,14 +1,14 @@
-import {ProColumns, ProTable} from '@ant-design/pro-components';
+import {updateUserUsingPost} from '@/services/backend/userController';
+import { ProColumns, ProTable } from '@ant-design/pro-components';
 import '@umijs/max';
-import {message, Modal} from 'antd';
+import { message, Modal } from 'antd';
 import React from 'react';
-import {updateGeneratorUsingPost} from '@/services/backend/generatorController';
 
 interface Props {
-  oldData?: API.Generator;
+  oldData?: API.User;
   visible: boolean;
-  columns: ProColumns<API.Generator>[];
-  onSubmit: (values: API.GeneratorAddRequest) => void;
+  columns: ProColumns<API.User>[];
+  onSubmit: (values: API.UserAddRequest) => void;
   onCancel: () => void;
 }
 
@@ -17,12 +17,10 @@ interface Props {
  *
  * @param fields
  */
-const handleUpdate = async (fields: API.GeneratorUpdateRequest) => {
-  fields.fileConfig = JSON.parse((fields.fileConfig || '{}') as string);
-  fields.modelConfig = JSON.parse((fields.modelConfig || '{}') as string);
+const handleUpdate = async (fields: API.UserUpdateRequest) => {
   const hide = message.loading('正在更新');
   try {
-    await updateGeneratorUsingPost(fields);
+    await updateUserUsingPost(fields);
     hide();
     message.success('更新成功');
     return true;
@@ -39,7 +37,7 @@ const handleUpdate = async (fields: API.GeneratorUpdateRequest) => {
  * @constructor
  */
 const UpdateModal: React.FC<Props> = (props) => {
-  const {oldData, visible, columns, onSubmit, onCancel} = props;
+  const { oldData, visible, columns, onSubmit, onCancel } = props;
 
   if (!oldData) {
     return <></>;
@@ -59,12 +57,9 @@ const UpdateModal: React.FC<Props> = (props) => {
         type="form"
         columns={columns}
         form={{
-          initialValues: {
-            ...oldData,
-            tags: JSON.parse(oldData.tags || '[]')
-        }
+          initialValues: oldData,
         }}
-        onSubmit={async (values: API.GeneratorAddRequest) => {
+        onSubmit={async (values: API.UserAddRequest) => {
           const success = await handleUpdate({
             ...values,
             id: oldData.id as any,

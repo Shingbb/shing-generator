@@ -39,7 +39,7 @@ public class ScriptGenerator {
         }
 
         // windows
-       sb = new StringBuilder();
+        sb = new StringBuilder();
         //Create a batch file to run the jar
         sb.append("@echo off").append("\n");
         //Append the java command to the batch file

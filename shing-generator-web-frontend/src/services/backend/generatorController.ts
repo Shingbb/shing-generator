@@ -32,10 +32,40 @@ export async function deleteGeneratorUsingPost(
   });
 }
 
-/** getGeneratorVO GET /api/generator/get/vo */
-export async function getGeneratorVoUsingGet(
+/** downloadGeneratorById GET /api/generator/download */
+export async function downloadGeneratorByIdUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.getGeneratorVOUsingGETParams,
+  params: API.downloadGeneratorByIdUsingGETParams,
+  options?: { [key: string]: any },
+) {
+  return request<any>('/api/generator/download', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** editGenerator POST /api/generator/edit */
+export async function editGeneratorUsingPost(
+  body: API.GeneratorEditRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseBoolean_>('/api/generator/edit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** getGeneratorVOById GET /api/generator/get/vo */
+export async function getGeneratorVoByIdUsingGet(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.getGeneratorVOByIdUsingGETParams,
   options?: { [key: string]: any },
 ) {
   return request<API.BaseResponseGeneratorVO_>('/api/generator/get/vo', {

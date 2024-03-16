@@ -93,6 +93,16 @@ declare namespace API {
     id?: number;
   };
 
+  type downloadGeneratorByIdUsingGETParams = {
+    /** id */
+    id?: number;
+  };
+
+  type downloadUsingGETParams = {
+    /** filepath */
+    filepath: string;
+  };
+
   type FileConfig = {
     files?: FileInfo[];
     inputRootPath?: string;
@@ -141,6 +151,20 @@ declare namespace API {
     name?: string;
     picture?: string;
     status?: number;
+    tags?: string[];
+    version?: string;
+  };
+
+  type GeneratorEditRequest = {
+    author?: string;
+    basePackage?: string;
+    description?: string;
+    distPath?: string;
+    fileConfig?: FileConfig;
+    id?: number;
+    modelConfig?: ModelConfig;
+    name?: string;
+    picture?: string;
     tags?: string[];
     version?: string;
   };
@@ -199,7 +223,7 @@ declare namespace API {
     version?: string;
   };
 
-  type getGeneratorVOUsingGETParams = {
+  type getGeneratorVOByIdUsingGETParams = {
     /** id */
     id?: number;
   };
@@ -408,6 +432,15 @@ declare namespace API {
     updateTime?: string;
     user?: UserVO;
     userId?: number;
+  };
+
+  type testDownloadFileUsingGETParams = {
+    /** filepath */
+    filepath?: string;
+  };
+
+  type testUploadFileUsingPOSTParams = {
+    biz?: string;
   };
 
   type uploadFileUsingPOSTParams = {

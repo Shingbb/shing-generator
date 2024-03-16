@@ -1,6 +1,7 @@
 package com.shing.maker.generator;
 
 import java.io.*;
+import java.util.Map;
 
 /**
  * @author shing
@@ -18,7 +19,8 @@ public class JarGenerator {
         // 这里一定要拆分！
         ProcessBuilder processBuilder = new ProcessBuilder(mavenCommand.split(" "));
         processBuilder.directory(new File(projectDir));
-
+        Map<String, String> environment = processBuilder.environment();
+        System.out.println(environment);
         Process process = processBuilder.start();
 
         // 读取命令的输出

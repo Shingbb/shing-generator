@@ -100,6 +100,7 @@ public class GeneratorServiceImpl extends ServiceImpl<GeneratorMapper, Generator
                 queryWrapper.like("tags", "\"" + tag + "\"");
             }
         }
+        System.out.println(tags);
         queryWrapper.ne(ObjectUtils.isNotEmpty(notId), "id", notId);
         queryWrapper.eq(ObjectUtils.isNotEmpty(id), "id", id);
         queryWrapper.eq(ObjectUtils.isNotEmpty(userId), "userId", userId);
