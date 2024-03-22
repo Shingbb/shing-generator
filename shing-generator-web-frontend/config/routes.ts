@@ -11,30 +11,35 @@ export default [
   // { path: '/File', icon: 'home', component: './File', name: '文件上传' },
   {
     path: '/Index',
-    icon: 'home',
+    icon: 'HomeOutlined',
     component: './Index',
     name: '主页',
   },
   {
     path: '/generator',
-    layout: false,
+    icon: 'VerticalAlignBottomOutlined',
+    name: '生成页',
     routes: [
       {
         path: '/generator/add',
-        icon: 'plus',
+        icon: 'crown',
         component: './Generator/Add',
         name: '创建生成器',
       },
       {
         path: '/generator/update',
         component: './Generator/Add',
-        icon: 'plus',
         name: '修改生成器',
         hideInMenu: true,
       },
+         {
+           path: '/generator/user/:id',
+           component: './Generator/Use',
+           name: '使用生成器',
+           hideInMenu: true,
+         },
       {
         path: '/generator/detail/:id',
-        icon: 'home',
         component: './Generator/Detail',
         name: '生成器详情',
         hideInMenu: true,
@@ -43,7 +48,7 @@ export default [
   },
   {
     path: '/admin',
-    icon: 'crown',
+    icon: 'SettingOutlined',
     name: '管理页',
     access: 'canAdmin',
     routes: [

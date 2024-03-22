@@ -89,6 +89,11 @@ public class GenerateTemplate {
         outputFilePath = outputBaseJavaPackagePath + "/cli/command/GenerateCommand.java";
         DynamicFileGenerator.doGenerate(inputFilePath, outputFilePath, meta);
 
+        // cli.command.JsonGenerateCommand
+        inputFilePath = inputResourcePath + File.separator + "templates/java/cli/command/JsonGenerateCommand.java.ftl";
+        outputFilePath = outputBaseJavaPackagePath + "/cli/command/JsonGenerateCommand.java";
+        DynamicFileGenerator.doGenerate(inputFilePath, outputFilePath, meta);
+
         // cli.command.ConfigCommand
         inputFilePath = inputResourcePath + File.separator + "templates/java/cli/command/ConfigCommand.java.ftl";
         outputFilePath = outputBaseJavaPackagePath + "/cli/command/ConfigCommand.java";
@@ -161,11 +166,8 @@ public class GenerateTemplate {
         String distOutputPath = outputPath + "-dist";
         // - 拷贝 jar 包
         String targetAbsolutePath = distOutputPath + File.separator + "target";
-        //Create a directory in the target path
         FileUtil.mkdir(targetAbsolutePath);
-        //Get the absolute path of the jar file
         String jarAbsolutePath = outputPath + File.separator + jarPath;
-        //Copy the jar file to the target path
         //原始文件路径 --> 目标文件路径
         FileUtil.copy(jarAbsolutePath, targetAbsolutePath, true);
         // - 拷贝脚本文件

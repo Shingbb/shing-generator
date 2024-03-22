@@ -98,3 +98,35 @@ create table if not exists post_favour
     index idx_postId (postId),
     index idx_userId (userId)
 ) comment '帖子收藏';
+
+INSERT INTO shing_generate.generator (id, name, description, basePackage, version, author, tags, picture, fileConfig, modelConfig, distPath, status, userId, createTime, updateTime, isDelete) VALUES (19, 'acm-template-pro-generator', 'ACM 示例模板生成器', 'com.shing', '1.0', 'shing', '["Java","Python"]', 'https://shing-1314138817.cos.ap-guangzhou.myqcloud.com/generator_picture/1/mXDq3j3B-gunda.jpg', '{
+    "files": [
+      {
+        "groupKey": "git",
+        "groupName": "开源",
+        "type": "group",
+        "condition": "needGit",
+        "files": [
+          {
+            "inputPath": ".gitignore",
+            "outputPath": ".gitignore",
+            "type": "file",
+            "generateType": "static"
+          },
+          {
+            "inputPath": "README.md",
+            "outputPath": "README.md",
+            "type": "file",
+            "generateType": "static"
+          }
+        ]
+      },
+      {
+        "inputPath": "src/com/shing/acm/MainTemplate.java.ftl",
+        "outputPath": "src/com/shing/acm/MainTemplate.java",
+        "type": "file",
+        "generateType": "dynamic"
+      }
+    ]
+  }', '{"models":[{"fieldName":"needGit","type":"boolean","description":"是否生成 .gitignore 文件","defaultValue":true},{"fieldName":"loop","type":"boolean","description":"是否生成循环","defaultValue":false,"abbr":"l"},{"type":"MainTemplate","description":"用于生成核心模板文件","groupKey":"mainTemplate","groupName":"核心模板","models":[{"fieldName":"author","type":"String","description":"作者注释","defaultValue":"shing","abbr":"a"},{"fieldName":"outputText","type":"String","description":"输出信息","defaultValue":"sum = ","abbr":"o"}],"condition":"loop"}]}', '/generator_dist/1/F0Zy5dml-acm-template-pro-generator-dist.zip', 0, 1, '2024-03-20 15:40:22', '2024-03-20 15:41:00', 0);
+
