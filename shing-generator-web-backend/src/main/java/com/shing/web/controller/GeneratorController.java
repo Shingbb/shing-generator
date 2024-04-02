@@ -1,6 +1,8 @@
 package com.shing.web.controller;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.ZipUtil;
 import cn.hutool.json.JSONUtil;
@@ -8,6 +10,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qcloud.cos.model.COSObject;
 import com.qcloud.cos.model.COSObjectInputStream;
 import com.qcloud.cos.utils.IOUtils;
+import com.shing.maker.generator.main.GenerateTemplate;
+import com.shing.maker.generator.main.ZipGenerator;
+import com.shing.maker.meta.MetaValidator;
 import com.shing.web.annotation.AuthCheck;
 import com.shing.web.common.BaseResponse;
 import com.shing.web.common.DeleteRequest;
@@ -17,13 +22,14 @@ import com.shing.web.constant.UserConstant;
 import com.shing.web.exception.BusinessException;
 import com.shing.web.exception.ThrowUtils;
 import com.shing.web.manager.CosManager;
-import com.shing.web.meta.Meta;
+import com.shing.maker.meta.Meta;
 import com.shing.web.model.dto.generator.*;
 import com.shing.web.model.entity.Generator;
 import com.shing.web.model.entity.User;
 import com.shing.web.model.vo.GeneratorVO;
 import com.shing.web.service.GeneratorService;
 import com.shing.web.service.UserService;
+import freemarker.template.TemplateException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.StopWatch;
@@ -330,7 +336,7 @@ public class GeneratorController {
         Long id = generatorUseRequest.getId();
         Map<String, Object> dataModel = generatorUseRequest.getDataModel();
 
-        // 需要用户登陆
+        // 需要用户登录
         User loginUser = userService.getLoginUser(request);
         log.info("userId = {} 是用来生成器 id ={ }", loginUser.getId(), id);
 
@@ -351,12 +357,13 @@ public class GeneratorController {
 
         // 定义独立的工作空间 temp
         String projectPath = System.getProperty("user.dir");
-        String tempDirPath = String.format("%s/.temp/user/%s", projectPath, id);
+        String tempDirPath = String.format("%s/.temp/use/%s", projectPath, id);
         String zipFilePath = tempDirPath + "/dish.zip";
 
         if (!FileUtil.exist(zipFilePath)) {
             FileUtil.touch(zipFilePath);
         }
+        // 下载文件
         try {
             cosManager.download(dishPath, zipFilePath);
         } catch (Exception e) {
@@ -426,11 +433,81 @@ public class GeneratorController {
         // 写入响应
         Files.copy(resultFile.toPath(), response.getOutputStream());
 
-        // 清理文件
+        // 清理工作空间的文件
         CompletableFuture.runAsync(() -> {
             FileUtil.del(tempDirPath);
         });
 
+    }
+
+    /**
+     * 制作代码生成器
+     *
+     * @param generatorMakeRequest
+     * @param request
+     * @param response
+     */
+    @PostMapping("/make")
+    public void makeGenerator(@RequestBody GeneratorMakeRequest generatorMakeRequest, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // 1） 输入参数
+        Meta meta = generatorMakeRequest.getMeta();
+        String zipFilePath = generatorMakeRequest.getZipFilePath();
+
+        // 需要用户登录
+        User loginUser = userService.getLoginUser(request);
+        log.info("userId = {} 是用来生成器 id ={ }", loginUser.getId());
+
+        // 2）创建独立的工作空间，下载压缩包到本地
+        String projectPath = System.getProperty("user.dir");
+        String makeId = IdUtil.getSnowflakeNextId() + RandomUtil.randomString(6);
+        String tempDirPath = String.format("%s/.temp/make/%s", projectPath, makeId);
+        String localZipFilePath = tempDirPath + "/dish.zip";
+
+        if (!FileUtil.exist(localZipFilePath)) {
+            FileUtil.touch(localZipFilePath);
+
+        }
+        // 下载文件
+        try {
+            cosManager.download(zipFilePath, localZipFilePath);
+        } catch (Exception e) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "压缩包下载失败");
+        }
+
+        // 3）解压压缩包，得到脚本文件
+        File unzipDistDir = ZipUtil.unzip(zipFilePath);
+
+        // 4）构造 meta 对象和生成器的输出路径
+        String sourceRootPath = unzipDistDir.getAbsolutePath();
+        meta.getFileConfig().setSourceRootPath(sourceRootPath);
+
+        // 校验和处理默认值
+        MetaValidator.doaValidatorAndFill(meta);
+        String outputPath = tempDirPath + "/generated/" + meta.getName();
+
+        // 5）调用 maker 方法制作生成器
+        GenerateTemplate generateTemplate = new ZipGenerator();
+        try {
+            generateTemplate.doGenerate(meta, outputPath);
+        } catch (Exception e) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "制作失败");
+        }
+        // 6）下载制作好的生成器压缩包
+        String suffix = "-dist.zip";
+        String zipFileName = meta.getName() + suffix;
+        // 生成器压缩包的绝对路径
+        String distZipFilePath = outputPath + suffix;
+
+        // 设置响应投
+        response.setContentType("application/octet-stream;charset=UTF-8");
+        response.setHeader("Content-Disposition", "attachment; filename=" + zipFileName);
+        // 写入响应
+        Files.copy(Paths.get(distZipFilePath), response.getOutputStream());
+
+        // 7）清理工作空间的文件
+        CompletableFuture.runAsync(() -> {
+            FileUtil.del(tempDirPath);
+        });
 
     }
 

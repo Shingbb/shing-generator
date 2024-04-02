@@ -1,7 +1,7 @@
 package com.shing.web.model.vo;
 
 import cn.hutool.json.JSONUtil;
-import com.shing.web.meta.Meta;
+import com.shing.maker.meta.Meta;
 import com.shing.web.model.entity.Generator;
 import com.shing.web.model.entity.Post;
 import lombok.Data;

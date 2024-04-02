@@ -1,6 +1,6 @@
 package com.shing.web.model.dto.generator;
 
-import com.shing.web.meta.Meta;
+import com.shing.maker.meta.Meta;
 import lombok.Data;
 
 import java.io.Serializable;

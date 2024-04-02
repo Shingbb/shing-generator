@@ -1,12 +1,9 @@
 package com.shing.web.model.dto.generator;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.shing.web.meta.Meta;
+import com.shing.maker.meta.Meta;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 /**
