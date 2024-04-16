@@ -33,7 +33,7 @@ public interface GeneratorService extends IService<Generator> {
     QueryWrapper<Generator> getQueryWrapper(GeneratorQueryRequest generatorQueryRequest);
 
     /**
-     * 获取帖子封装
+     * 获取生成器封装
      *
      * @param generator
      * @param request
@@ -42,7 +42,7 @@ public interface GeneratorService extends IService<Generator> {
     GeneratorVO getGeneratorVO(Generator generator, HttpServletRequest request);
 
     /**
-     * 分页获取帖子封装
+     * 分页获取生成器封装
      *
      * @param generatorPage
      * @param request

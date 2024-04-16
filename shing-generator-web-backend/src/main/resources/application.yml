@@ -4,7 +4,7 @@ spring:
     name: shing-generator-web-backend
   # 默认 dev 环境
   profiles:
-    active: dev
+    active: local
   # 支持 swagger3
   mvc:
     pathmatch:
@@ -58,6 +58,11 @@ server:
     session:
       cookie:
         max-age: 2592000
+  tomcat:
+    max-connections: 100000
+    threads:
+      max: 500
+    accept-count: 1000
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: false

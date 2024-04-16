@@ -30,7 +30,7 @@ export default (props: Props) => {
           <Select
             style={{
               minWidth: 80,
-            }}  
+            }}
             options={[
               { value: 'file', label: '文件' },
               { value: 'dir', label: '目录' },

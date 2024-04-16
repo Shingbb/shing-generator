@@ -47,6 +47,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
         return <AvatarDropdown />;
       },
     },
+    // 水印
     waterMarkProps: {
       content: initialState?.currentUser?.userName,
     },
