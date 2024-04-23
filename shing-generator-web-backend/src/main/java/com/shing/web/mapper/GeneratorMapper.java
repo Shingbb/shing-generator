@@ -2,6 +2,9 @@ package com.shing.web.mapper;
 
 import com.shing.web.model.entity.Generator;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
 * @author LBC
@@ -10,7 +13,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.shing.web.model.entity.Generator
 */
 public interface GeneratorMapper extends BaseMapper<Generator> {
+    @Select("SELECT id, distPath FROM generator WHERE isDelete = 1")
 
+    List<Generator> listDeletedGenerator();
 }
 
 
