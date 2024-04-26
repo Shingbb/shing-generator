@@ -1,9 +1,12 @@
 package com.shing.web.manager;
 
 import cn.dev33.satoken.stp.StpUtil;
+import com.qcloud.cos.exception.CosClientException;
+import com.qcloud.cos.exception.CosServiceException;
 import io.minio.GetObjectArgs;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
+import io.minio.RemoveObjectArgs;
 import io.minio.errors.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -19,25 +22,30 @@ import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 
 /**
  * @author LBC
  */
 @Component
-public class MinIOManager {
+public class MinioManager {
     @Resource
     private MinioClient minioClient;
+
     /**
      * 捅名称
      */
     @Value("${minio.bucketName}")
     private String bucketName;
- 
+
+    /**
+     * 访问api Url
+     */
+    @Value("${minio.endpoint}")
+    private String endpoint;
+
     /**
      * putObject上传文件
      *
@@ -61,9 +69,9 @@ public class MinIOManager {
                 .stream(inputStream, size, -1)
                 .contentType(file.getContentType())
                 .build());
-        return "http://124.70.210.130:9000/"+bucketName+filePath;
+        return endpoint + "/" + bucketName + filePath;
     }
- 
+
     /**
      * 下载文件
      *
@@ -77,7 +85,7 @@ public class MinIOManager {
                 .build());
         downloadFile(httpServletResponse, inputStream, fileName);
     }
- 
+
     /**
      * 获取文件路径
      *
@@ -88,9 +96,10 @@ public class MinIOManager {
         // 文件目录：根据业务、用户来划分
         String uuid = RandomStringUtils.randomAlphanumeric(8);
         String filename = uuid + "-" + originalFilename;
+
         return String.format("/%s/%s/%s", ZonedDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'")), StpUtil.getLoginId(), filename);
     }
- 
+
     /**
      * 根据文件路径获取文件名称
      *
@@ -101,7 +110,7 @@ public class MinIOManager {
         String[] split = StringUtils.split(filePath, "/");
         return split[split.length - 1];
     }
- 
+
     /**
      * 下载文件
      *
@@ -126,5 +135,21 @@ public class MinIOManager {
         // 关闭流资源
         inputStream.close();
         outputStream.close();
+    }
+
+    /**
+     * 删除对象
+     *
+     * @return
+     */
+    public void deleteObject(HttpServletResponse httpServletResponse, String filePath) throws CosClientException, CosServiceException, ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+        minioClient.removeObject(RemoveObjectArgs.builder()
+                .bucket(bucketName)
+                .object(filePath)
+                .build());
+    }
+
+    public void testMinio() throws Exception {
+        System.out.println(minioClient);
     }
 }

@@ -43,6 +43,11 @@ spring:
   #  secretKey:
   #  #Minio数据桶名称
   #  bucketName:
+minio:
+  endpoint: http://127.0.0.1:9000
+  accessKey: minioadmin
+  secretKey: minioadmin
+  bucketName: generator
   # 文件上传
   servlet:
     multipart:
@@ -71,7 +76,6 @@ mybatis-plus:
     db-config:
       logic-delete-value: 1 # 逻辑已删除值（默认为 1）
       logic-not-delete-value: 0 # 逻辑未删除值（默认为 0）
-
 # Sa-Token 配置
 sa-token:
   # token 名称（同时也是 cookie 名称）
@@ -120,3 +124,7 @@ xxl:
       logpath: logs/jobhandler
       # xxl-job executor log-retention-days
       logretentiondays: 30
+sql:
+  slow:
+    mirror:
+      analysisSwitch: true #是否开启 SQL 分析

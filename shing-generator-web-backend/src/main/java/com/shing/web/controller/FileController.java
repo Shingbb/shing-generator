@@ -8,11 +8,10 @@ import com.shing.web.annotation.AuthCheck;
 import com.shing.web.common.BaseResponse;
 import com.shing.web.common.ErrorCode;
 import com.shing.web.common.ResultUtils;
-import com.shing.web.constant.FileConstant;
 import com.shing.web.constant.UserConstant;
 import com.shing.web.exception.BusinessException;
 import com.shing.web.manager.CosManager;
-import com.shing.web.manager.MinIOManager;
+import com.shing.web.manager.MinioManager;
 import com.shing.web.model.dto.file.UploadFileRequest;
 import com.shing.web.model.entity.User;
 import com.shing.web.model.enums.FileUploadBizEnum;
@@ -45,7 +44,7 @@ public class FileController {
     private CosManager cosManager;
 
     @Resource
-    private MinIOManager minioManager;
+    private MinioManager minioManager;
 
     /**
      * 测试文件上传
